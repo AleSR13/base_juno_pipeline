@@ -192,7 +192,7 @@ class Pipeline:
             )
             cluster_log_dir.mkdir(parents=True, exist_ok=True)
             cluster = (
-                'bsub -q %s \
+                'bsub -q {resources.queue} \
                     -n {threads} \
                     -o %s/{name}_{wildcards}_{jobid}.out \
                     -e %s/{name}_{wildcards}_{jobid}.err \
@@ -201,7 +201,6 @@ class Pipeline:
                     -M {resources.mem_gb}G \
                     -W %s '
                 % (
-                    str(self.queue),
                     str(cluster_log_dir),
                     str(cluster_log_dir),
                     str(self.time_limit),
