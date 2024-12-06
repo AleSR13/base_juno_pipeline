@@ -199,11 +199,11 @@ class Pipeline:
                     -R "span[hosts=1]" \
                     -R "rusage[mem={resources.mem_gb}G]" \
                     -M {resources.mem_gb}G \
-                    -W %s '
+                    -W {resources.runtime_min}'
                 % (
                     str(cluster_log_dir),
                     str(cluster_log_dir),
-                    str(self.time_limit),
+                    
                 )
             )
             self.snakemake_args["cluster"] = cluster
